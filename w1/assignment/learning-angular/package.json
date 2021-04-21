@@ -1,0 +1,15 @@
+{
+  "name": "learning-angular",
+  "version": "1.0.0",
+  "description": "Week 1 Assignment: Create an Angular Project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "splucena",
+  "license": "ISC",
+  "dependencies": {
+    "@angular/cli": "^11.2.9",
+    "npm": "^6.14.13"
+  }
+}
