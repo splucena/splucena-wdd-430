@@ -15,10 +15,10 @@ export class ContactService {
     return this.contacts.slice();
   }
 
-  getContact(id: string) {
+  getContact(id: string): Contact {
     for (let c of this.contacts) {
       if (c.id === id) {
-        return this.contacts[0][id];
+        return c;
       }
     }
 

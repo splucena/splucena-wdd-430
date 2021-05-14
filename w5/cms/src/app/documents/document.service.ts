@@ -21,7 +21,7 @@ export class DocumentService {
   getDocument(id: string) {
     for (let d of this.documents) {
       if (d.id === id) {
-        return this.documents[0][id];
+        return d;
       }
     }
 

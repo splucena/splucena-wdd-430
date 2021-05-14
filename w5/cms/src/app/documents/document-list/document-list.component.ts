@@ -19,7 +19,6 @@ export class DocumentListComponent implements OnInit {
   }
 
   onSelectedDocument(document: Document) {
-    //this.selectedDocumentEvent.emit(document);
     this.documentService.documentSelectedEvent.emit(document);
   }
 }
