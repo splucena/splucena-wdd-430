@@ -7,12 +7,9 @@
     </div>
     <br>
     <div class="row">
-      <div class="col-md-2" *ngIf="contact.imageUrl !== ' '; else empty">
+      <div class="col-md-2">
         <img src="{{ contact.imageUrl }}" style="width: 50px; height:70px" alt="{{ contact.name }}">
       </div>
-      <ng-template #empty>
-        <div class="col-md-2">No image available.</div>
-      </ng-template>
       <div class="col-md-10">
         <button class="btn btn-danger pull-right ml4">Delete</button>
         <button class="btn btn-primary pull-right">Edit</button>

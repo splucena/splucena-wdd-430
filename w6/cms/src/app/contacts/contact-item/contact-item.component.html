@@ -2,10 +2,7 @@
   <div class="pull-left">
     <h4 class="list-group-item-heading">{{ contact.name }}</h4>
   </div>
-  <span class="pull-right" *ngIf="contact.imageUrl !== ' '; else empty">
+  <span class="pull-right">
     <img [src]="contact.imageUrl" alt="{{ contact.name }}" class="img-responsive" style="max-height: 50px;">
   </span>
-  <ng-template #empty>
-    <span class="pull-right">No image available.</span>
-  </ng-template>
 </a>
