@@ -6,7 +6,7 @@
 
   <div class="col-md-4">
     <!--Add tag to load the DocumentDetailComponent here-->
-    <cms-document-detail *ngIf="selectedDocument; else infoText" [document]="selectedDocument">
+    <!-- <cms-document-detail *ngIf="selectedDocument; else infoText" [document]="selectedDocument">
     </cms-document-detail>
     <ng-template #infoText>
       <div class="panel panel-default">
@@ -14,6 +14,7 @@
           <h4>Please select a document.</h4>
         </div>
       </div>
-    </ng-template>
+    </ng-template> -->
+    <router-outlet></router-outlet>
   </div>
 </div>

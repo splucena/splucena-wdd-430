@@ -6,7 +6,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { ContactDetailComponent } from './contacts/contact-detail/contact-detail.component';
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
 import { HeaderComponent } from './header/header.component';
-import {ContactItemComponent} from './contacts/contact-item/contact-item.component';
+import { ContactItemComponent } from './contacts/contact-item/contact-item.component';
 import { DocumentComponent } from './documents/document.component';
 import { DocumentDetailComponent } from './documents/document-detail/document-detail.component';
 import { DocumentListComponent } from './documents/document-list/document-list.component';
@@ -16,6 +16,9 @@ import { MessageItemComponent } from './messages/message-item/message-item.compo
 import { MessageEditComponent } from './messages/message-edit/message-edit.component';
 import { MessageListComponent } from './messages/message-list/message-list.component';
 import { DropdownDirectiveDirective } from './dropdown-directive.directive';
+import { AppRoutingModule } from './app-routing.module';
+import { DocumentStartComponent } from './documents/document-start/document-start.component';
+import { DocumentEditComponent } from './documents/document-edit/document-edit.component';
 
 @NgModule({
   declarations: [
@@ -33,12 +36,12 @@ import { DropdownDirectiveDirective } from './dropdown-directive.directive';
     MessageItemComponent,
     MessageEditComponent,
     MessageListComponent,
-    DropdownDirectiveDirective
+    DropdownDirectiveDirective,
+    DocumentStartComponent,
+    DocumentEditComponent,
   ],
-  imports: [
-    BrowserModule
-  ],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
