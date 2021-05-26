@@ -10,8 +10,4 @@ import { ContactService } from './contacts/contact.service';
 export class AppComponent {
   title = 'cms';
   loadedMenu = 'contact';
-
-  // switchView(menuSelected: string) {
-  //   this.loadedMenu = menuSelected;
-  // }
 }

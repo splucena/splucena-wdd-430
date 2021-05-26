@@ -19,6 +19,8 @@ import { DropdownDirectiveDirective } from './dropdown-directive.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { DocumentStartComponent } from './documents/document-start/document-start.component';
 import { DocumentEditComponent } from './documents/document-edit/document-edit.component';
+import { ContactStartComponent } from './contacts/contact-start/contact-start.component';
+import { ContactEditComponent } from './contacts/contact-edit/contact-edit.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { DocumentEditComponent } from './documents/document-edit/document-edit.c
     DropdownDirectiveDirective,
     DocumentStartComponent,
     DocumentEditComponent,
+    ContactStartComponent,
+    ContactEditComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

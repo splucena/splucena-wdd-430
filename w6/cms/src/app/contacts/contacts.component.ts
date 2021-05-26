@@ -17,8 +17,4 @@ export class ContactsComponent implements OnInit {
       this.selectedContact = contact;
     });
   }
-
-  //selectedContact() {
-  //
-  //}
 }

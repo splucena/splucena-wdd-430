@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ContactDetailComponent } from './contacts/contact-detail/contact-detail.component';
+import { ContactEditComponent } from './contacts/contact-edit/contact-edit.component';
+import { ContactStartComponent } from './contacts/contact-start/contact-start.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { DocumentDetailComponent } from './documents/document-detail/document-detail.component';
 import { DocumentEditComponent } from './documents/document-edit/document-edit.component';
@@ -20,8 +23,20 @@ const appRoutes: Routes = [
       { path: ':id/edit', component: DocumentEditComponent },
     ],
   },
-  { path: 'messages', component: MessageListComponent },
-  { path: 'contacts', component: ContactsComponent },
+  {
+    path: 'messages',
+    component: MessageListComponent,
+  },
+  {
+    path: 'contacts',
+    component: ContactsComponent,
+    children: [
+      { path: '', component: ContactStartComponent },
+      { path: 'new', component: ContactEditComponent },
+      { path: ':id', component: ContactDetailComponent },
+      { path: ':id/edit', component: ContactEditComponent },
+    ],
+  },
 ];
 
 @NgModule({

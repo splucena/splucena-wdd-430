@@ -10,6 +10,7 @@ export class ContactService {
   }
 
   contactSelectedEvent = new EventEmitter<Contact>();
+  contactChangeEvent = new EventEmitter<Contact[]>();
 
   getContacts() {
     return this.contacts.slice();
@@ -23,5 +24,21 @@ export class ContactService {
     }
 
     return null;
+  }
+
+  deleteContact(contact: Contact) {
+    if (!contact) {
+      return;
+    }
+
+    const pos = this.contacts.indexOf(contact);
+    if (pos < 0) {
+      return;
+    }
+
+    // Delete contact on position pos
+    this.contacts.splice(pos, 1);
+    // Emit an updated copy of contacts
+    this.contactChangeEvent.emit(this.contacts.slice());
   }
 }

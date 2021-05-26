@@ -14,8 +14,8 @@
         <div class="col-md-2">No image available.</div>
       </ng-template>
       <div class="col-md-10">
-        <button class="btn btn-danger pull-right ml4">Delete</button>
-        <button class="btn btn-primary pull-right">Edit</button>
+        <a class="btn btn-danger pull-right ml4" (click)="onDelete()">Delete</a>
+        <a class="btn btn-primary pull-right" [routerLink]="['edit']">Edit</a>
       </div>
     </div>
   </div>

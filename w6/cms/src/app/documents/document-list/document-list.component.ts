@@ -29,10 +29,6 @@ export class DocumentListComponent implements OnInit {
     );
   }
 
-  // onSelectedDocument(document: Document) {
-  //   this.documentService.documentSelectedEvent.emit(document);
-  // }
-
   onNewDocument() {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
