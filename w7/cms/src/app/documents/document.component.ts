@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Document } from './document.model';
 import { DocumentService } from './document.service';
 
@@ -7,11 +8,12 @@ import { DocumentService } from './document.service';
   templateUrl: './document.component.html',
   styleUrls: ['./document.component.css'],
 })
-export class DocumentComponent implements OnInit {
+export class DocumentComponent implements OnInit, OnDestroy {
   selectedDocument: Document;
+  private subscription: Subscription;
 
   constructor(private documentService: DocumentService) {
-    this.documentService.documentSelectedEvent.subscribe(
+    this.subscription = this.documentService.documentSelectedEvent.subscribe(
       (document: Document) => {
         this.selectedDocument = document;
       }
@@ -19,4 +21,8 @@ export class DocumentComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
