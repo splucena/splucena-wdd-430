@@ -20,6 +20,7 @@ export class ContactService {
   }
 
   getContact(id: string): Contact {
+    console.log('Contact Service: ' + id);
     for (let c of this.contacts) {
       if (c.id === id) {
         return c;
