@@ -6,7 +6,13 @@
         <a class="btn btn-success pull-right" (click)="onNewContact()">New Contact</a>
       </div>
       <div class="panel-body">
-        <cms-contact-item *ngFor="let c of contacts" [contact]="c">
+        <cms-contact-item 
+          *ngFor="let contact of contacts" 
+          [contact]="contact"
+          dnd-draggable
+          [dragEnabled]="true"
+          [dragData]="contact"
+          [dropZones]="['contactGroup']">
         </cms-contact-item>
       </div>
     </div>
