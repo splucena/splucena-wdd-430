@@ -15,6 +15,7 @@ export class ContactEditComponent implements OnInit {
   contact: Contact;
   editMode: boolean = false;
   id: string;
+  isAlreadyInGroup: boolean = false;
 
   constructor(
     private contactService: ContactService,
@@ -82,15 +83,18 @@ export class ContactEditComponent implements OnInit {
 
   isInvalidContact(newContact: Contact) {
     if (!newContact) {
+      this.isAlreadyInGroup = true;
       return true;
     }
 
     if (this.contact && newContact.id === this.contact.id) {
+      this.isAlreadyInGroup = true;
       return true;
     }
 
     for (let i = 0; i < this.groupContacts.length; i++) {
       if (newContact.id === this.groupContacts[i].id) {
+        this.isAlreadyInGroup = true;
         return true;
       }
     }

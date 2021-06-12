@@ -75,26 +75,31 @@
       </div>
 
       <div class="row">
-        <div class="form-group">
-          <label for="groupList">Group Contacts:</label>
-
-          <div 
-            class="row" 
-            id="groupList"
-            style="min-height: 3rem;" 
-            dnd-droppable
-            [dropZones]="['contactGroup']"
-            (onDropSuccess)="addToGroup($event)">
-
-            <div *ngFor="let contact of groupContacts; let i = index">
-              <div>
-                <cms-contact-item class="col-sm-11" [contact]="contact"></cms-contact-item>
-                <button class="btn btn-danger col-sm-2 deleteButton" (click)="onRemoveItem(i)">X</button>
-              </div>
-            </div>
-            <span class="dragMsg" *ngIf="groupContacts?.length < 1">Drag contacts in group here</span>
+        <div class="col-sm-12 form-group">
+          <div class="alert alert-danger" *ngIf="isAlreadyInGroup">
+            <p>Contact can not be added to the group. It is already in group or is the current contact.</p>
           </div>
+          <div class="form-group">
+            <label for="groupList">Group Contacts:</label>
 
+            <div 
+              class="row" 
+              id="groupList"
+              style="min-height: 3rem;" 
+              dnd-droppable
+              [dropZones]="['contactGroup']"
+              (onDropSuccess)="addToGroup($event)">
+
+              <div *ngFor="let contact of groupContacts; let i = index">
+                <div>
+                  <cms-contact-item class="col-sm-11" [contact]="contact"></cms-contact-item>
+                  <button class="btn btn-danger col-sm-2 deleteButton" (click)="onRemoveItem(i)">X</button>
+                </div>
+              </div>
+              <span class="dragMsg" *ngIf="groupContacts?.length < 1">Drag contacts in group here</span>
+            </div>
+
+          </div>
         </div>
       </div>
       <div 
