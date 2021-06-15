@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Document } from './document.model';
@@ -7,10 +8,10 @@ import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
   providedIn: 'root',
 })
 export class DocumentService {
-  private documents: Document[];
+  private documents: Document[] = [];
   private maxDocumentId: number;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.documents = MOCKDOCUMENTS;
     this.maxDocumentId = this.getMaxId();
   }
@@ -18,8 +19,37 @@ export class DocumentService {
   documentSelectedEvent = new Subject<Document>();
   documentChangeEvent = new Subject<Document[]>();
 
-  getDocuments() {
-    return this.documents.slice();
+  getDocuments(): any {
+    this.http
+      .get('https://openerp-204808-default-rtdb.firebaseio.com/documents.json')
+      .subscribe(
+        (documents: Document[]) => {
+          this.documents = documents || [];
+          this.maxDocumentId = this.getMaxId();
+          this.documents.sort((a, b) =>
+            a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+          );
+          this.documentChangeEvent.next(this.documents.slice());
+        },
+        (error: any) => {
+          console.log(error.message);
+        }
+      );
+  }
+
+  storeDocuments() {
+    let stringifyDocuments = JSON.stringify(this.documents);
+    this.http
+      .put(
+        'https://openerp-204808-default-rtdb.firebaseio.com/documents.json',
+        stringifyDocuments,
+        {
+          headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        }
+      )
+      .subscribe(() => {
+        this.documentChangeEvent.next(this.documents.slice());
+      });
   }
 
   getDocument(id: string) {
@@ -53,8 +83,9 @@ export class DocumentService {
     this.maxDocumentId++;
     newDocument.id = this.maxDocumentId.toString();
     this.documents.push(newDocument);
-    let documentListClone = this.documents.slice();
-    this.documentChangeEvent.next(documentListClone);
+    //let documentListClone = this.documents.slice();
+    //this.documentChangeEvent.next(documentListClone);
+    this.storeDocuments();
   }
 
   udpateDocument(originalDocument: Document, newDocument: Document) {
@@ -69,8 +100,9 @@ export class DocumentService {
 
     newDocument.id = originalDocument.id;
     this.documents[pos] = newDocument;
-    const documentListClose = this.documents.slice();
-    this.documentChangeEvent.next(documentListClose);
+    //const documentListClose = this.documents.slice();
+    //this.documentChangeEvent.next(documentListClose);
+    this.storeDocuments();
   }
 
   deleteDocument(document: Document) {
@@ -83,7 +115,8 @@ export class DocumentService {
       return;
     }
     this.documents.splice(pos, 1);
-    const documentListClone = this.documents.slice();
-    this.documentChangeEvent.next(documentListClone);
+    //const documentListClone = this.documents.slice();
+    //this.documentChangeEvent.next(documentListClone);
+    this.storeDocuments();
   }
 }

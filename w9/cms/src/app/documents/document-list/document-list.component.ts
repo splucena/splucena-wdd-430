@@ -29,7 +29,7 @@ export class DocumentListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.documents = this.documentService.getDocuments();
+    this.documents = this.documentService.getDocuments() || [];
     this.subscription = this.documentService.documentChangeEvent.subscribe(
       (documents: Document[]) => {
         this.documents = documents;
@@ -42,9 +42,9 @@ export class DocumentListComponent implements OnInit, OnDestroy {
 
     //const maxId = this.documentService.getMaxId();
     //console.log(maxId);
-    let doc: Document;
-    doc = new Document('1', 'Test', 'Test', 'Test', []);
-    this.documentService.addDocument(doc);
+    //let doc: Document;
+    //doc = new Document('1', 'Test', 'Test', 'Test', []);
+    //this.documentService.addDocument(doc);
   }
 
   ngOnDestroy() {
