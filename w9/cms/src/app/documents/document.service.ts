@@ -24,7 +24,7 @@ export class DocumentService {
       .get('https://openerp-204808-default-rtdb.firebaseio.com/documents.json')
       .subscribe(
         (documents: Document[]) => {
-          this.documents = documents || [];
+          this.documents = documents;
           this.maxDocumentId = this.getMaxId();
           this.documents.sort((a, b) =>
             a.name > b.name ? 1 : b.name > a.name ? -1 : 0
@@ -83,8 +83,6 @@ export class DocumentService {
     this.maxDocumentId++;
     newDocument.id = this.maxDocumentId.toString();
     this.documents.push(newDocument);
-    //let documentListClone = this.documents.slice();
-    //this.documentChangeEvent.next(documentListClone);
     this.storeDocuments();
   }
 
@@ -100,8 +98,6 @@ export class DocumentService {
 
     newDocument.id = originalDocument.id;
     this.documents[pos] = newDocument;
-    //const documentListClose = this.documents.slice();
-    //this.documentChangeEvent.next(documentListClose);
     this.storeDocuments();
   }
 
@@ -115,8 +111,6 @@ export class DocumentService {
       return;
     }
     this.documents.splice(pos, 1);
-    //const documentListClone = this.documents.slice();
-    //this.documentChangeEvent.next(documentListClone);
     this.storeDocuments();
   }
 }
