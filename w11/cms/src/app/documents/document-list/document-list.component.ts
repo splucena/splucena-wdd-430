@@ -33,6 +33,9 @@ export class DocumentListComponent implements OnInit, OnDestroy {
     this.subscription = this.documentService.documentChangeEvent.subscribe(
       (documents: Document[]) => {
         this.documents = documents;
+        this.documents.sort((a, b) =>
+          a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+        );
       }
     );
   }

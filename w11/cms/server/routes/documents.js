@@ -7,14 +7,12 @@ var router = express.Router();
 router.get("/", (req, res, next) => {
   Document.find()
     .then((documents) => {
-      console.log("Express document...");
       res.status(200).json({
         message: "Documents fetched successfully",
         documents: documents,
       });
     })
     .catch((err) => {
-      console.log("Error Express...");
       res.status(500).json({
         message: "An error occurred.",
         error: err,

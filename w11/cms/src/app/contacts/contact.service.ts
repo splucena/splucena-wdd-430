@@ -3,6 +3,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Contact } from './contact-list/contact.model';
 import { MOCKCONTACTS } from './MOCKCONTACTS';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -21,15 +22,28 @@ export class ContactService {
 
   getContacts(): any {
     this.http
-      .get('https://openerp-204808-default-rtdb.firebaseio.com/contacts.json')
+      .get<{ message: string; contacts: any }>('http://localhost:3000/contacts')
+      .pipe(
+        map((contactData) => {
+          return contactData.contacts.map((contact) => {
+            return {
+              id: contact._id,
+              name: contact.name,
+              email: contact.email,
+              phone: contact.phone,
+              imageUrl: contact.imageUrl,
+              group: [],
+            };
+          });
+        })
+      )
       .subscribe(
         (contacts: Contact[]) => {
           this.contacts = contacts;
-          this.maxContactId = this.getMaxId();
           this.contacts.sort((a, b) =>
             a.name > b.name ? 1 : b.name > a.name ? -1 : 0
           );
-          this.contactChangeEvent.next(this.contacts.slice());
+          this.contactChangeEvent.next([...this.contacts]);
         },
         (error: any) => {
           console.log(error.message);
@@ -67,11 +81,17 @@ export class ContactService {
       return;
     }
 
-    this.maxContactId++;
-    newContact.id = this.maxContactId.toString();
-    console.log(newContact);
-    this.contacts.push(newContact);
-    this.storeContacts();
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.http
+      .post<{ message: string; contact: Contact }>(
+        'http://localhost:3000/Contacts',
+        newContact,
+        { headers: headers }
+      )
+      .subscribe((responseData) => {
+        this.contacts.push(newContact);
+        this.contactChangeEvent.next([...this.contacts]);
+      });
   }
 
   getMaxId(): number {

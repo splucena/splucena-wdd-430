@@ -57,6 +57,9 @@ export class DocumentService {
       )
       .subscribe((transformedDocuments) => {
         this.documents = transformedDocuments;
+        this.documents.sort((a, b) =>
+          a.name > b.name ? 1 : b.name > a.name ? -1 : 0
+        );
         this.documentChangeEvent.next([...this.documents]);
       });
   }
@@ -104,10 +107,6 @@ export class DocumentService {
       return;
     }
 
-    // this.maxDocumentId++;
-    // newDocument.id = this.maxDocumentId.toString();
-    // this.documents.push(newDocument);
-    // this.storeDocuments();
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http
       .post<{ message: string; document: Document }>(
