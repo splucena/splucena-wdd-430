@@ -39,6 +39,47 @@ router.post("/", (req, res, next) => {
       res.status(201).json({
         message: "contact added successfully",
         contact: createdContact,
+        _id: createdContact._id,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "An error occurred.",
+        error: err,
+      });
+    });
+});
+
+router.put("/:id", (req, res, next) => {
+  Contact.findOne({ _id: req.params.id })
+    .then((contact) => {
+      contact.name = req.body.name;
+      contact.email = req.body.email;
+      contact.phone = req.body.phone;
+      contact.imageUrl = req.body.imageUrl;
+      contact.group = req.body.group;
+
+      Contact.updateOne({ _id: req.params.id }, contact).then((result) => {
+        res.status(204).json({
+          message: "Contact updated successfully.",
+        });
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "Contact not found.",
+        error: { contact: "Contact not found." },
+      });
+    });
+});
+
+router.delete("/:id", (req, res, next) => {
+  Contact.findOne({ _id: req.params.id })
+    .then((contact) => {
+      Contact.deleteOne({ _id: req.params.id }).then((result) => {
+        res.status(204).json({
+          message: "Contact deleted successfully.",
+        });
       });
     })
     .catch((err) => {

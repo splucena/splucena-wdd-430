@@ -43,7 +43,6 @@ export class DocumentService {
       )
       .pipe(
         map((documentData) => {
-          console.log(documentData);
           return documentData.documents.map((document) => {
             return {
               name: document.name,
@@ -109,12 +108,13 @@ export class DocumentService {
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http
-      .post<{ message: string; document: Document }>(
+      .post<{ message: string; document: Document; _id: string }>(
         'http://localhost:3000/Documents',
         newDocument,
         { headers: headers }
       )
       .subscribe((responseData) => {
+        newDocument.id = responseData._id;
         this.documents.push(newDocument);
         this.documentChangeEvent.next([...this.documents]);
       });
@@ -143,9 +143,6 @@ export class DocumentService {
         this.documents[pos] = newDocument;
         this.documentChangeEvent.next([...this.documents]);
       });
-
-    // this.documents[pos] = newDocument;
-    // this.storeDocuments();
   }
 
   deleteDocument(document: Document) {
@@ -164,7 +161,5 @@ export class DocumentService {
         this.documents.splice(pos, 1);
         this.documentChangeEvent.next([...this.documents]);
       });
-    //this.documents.splice(pos, 1);
-    //this.storeDocuments();
   }
 }

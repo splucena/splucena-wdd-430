@@ -36,6 +36,7 @@ router.post("/", (req, res, next) => {
       res.status(201).json({
         message: "Document added successfully",
         document: createdDocument,
+        _id: createdDocument._id,
       });
     })
     .catch((err) => {

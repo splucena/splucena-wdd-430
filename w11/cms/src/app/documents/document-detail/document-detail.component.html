@@ -1,7 +1,7 @@
 <div class="panel panel-default" xmlns="http://www.w3.org/1999/html">
   <div class="panel-heading">
     <div class="row pad-all">
-      <h4 class="title margin-left-right">{{ document?. name }}</h4>
+      <h4 class="title margin-left-right">{{ document?.name }}</h4>
       <div class="row pull-right margin-left-right">
         <a class="btn btn-primary mr1" (click)="onView()">View</a>
         <a class="btn btn-info mr1" [routerLink]="['edit']">Edit</a>
@@ -15,14 +15,16 @@
         <label>Description:</label>
         <span class="label-value">
           {{ document?.description }}
-          <!-- display document description here --></span>
+          <!-- display document description here --></span
+        >
       </div>
-      <br>
+      <br />
       <div class="row">
         <label>URL:</label>
         <span class="label-value">
           {{ document?.url }}
-          <!-- display document URL here --></span>
+          <!-- display document URL here --></span
+        >
       </div>
     </div>
   </div>

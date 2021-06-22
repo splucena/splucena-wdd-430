@@ -83,12 +83,13 @@ export class ContactService {
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http
-      .post<{ message: string; contact: Contact }>(
+      .post<{ message: string; contact: Contact; _id: string }>(
         'http://localhost:3000/Contacts',
         newContact,
         { headers: headers }
       )
       .subscribe((responseData) => {
+        newContact.id = responseData._id;
         this.contacts.push(newContact);
         this.contactChangeEvent.next([...this.contacts]);
       });
@@ -118,8 +119,15 @@ export class ContactService {
     }
 
     newContact.id = originalContact.id;
-    this.contacts[pos] = newContact;
-    this.storeContacts();
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.http
+      .put('http://localhost:3000/contacts/' + originalContact.id, newContact, {
+        headers: headers,
+      })
+      .subscribe((response: Response) => {
+        this.contacts[pos] = newContact;
+        this.contactChangeEvent.next([...this.contacts]);
+      });
   }
 
   deleteContact(contact: Contact) {
@@ -131,7 +139,12 @@ export class ContactService {
     if (pos < 0) {
       return;
     }
-    this.contacts.splice(pos, 1);
-    this.storeContacts();
+
+    this.http
+      .delete('http://localhost:3000/contacts/' + contact.id)
+      .subscribe((response) => {
+        this.contacts.splice(pos, 1);
+        this.contactChangeEvent.next([...this.contacts]);
+      });
   }
 }
