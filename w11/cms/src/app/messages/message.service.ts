@@ -3,6 +3,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Message } from './message.model';
 import { MOCKMESSAGES } from './MOCKMESSAGES';
 import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,24 +18,10 @@ export class MessageService {
   }
 
   selectedMessageEvent = new EventEmitter<Message>();
-  messageChangeEvent = new EventEmitter<Message[]>();
+  //messageChangeEvent = new EventEmitter<Message[]>();
+  messageChangeEvent = new Subject<Message[]>();
 
   getMessages(): any {
-    // this.http
-    //   .get('https://openerp-204808-default-rtdb.firebaseio.com/messages.json')
-    //   .subscribe(
-    //     (messages: Message[]) => {
-    //       this.messages = messages;
-    //       this.maxMessageId = this.getMaxId();
-    //       // this.messages.sort((a, b) =>
-    //       //   a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-    //       // );
-    //       this.messageChangeEvent.next(this.messages.slice());
-    //     },
-    //     (error: any) => {
-    //       console.log(error.message);
-    //     }
-    //   );
     this.http
       .get<{ message: string; messages: any }>('http://localhost:3000/messages')
       .pipe(
@@ -93,8 +80,25 @@ export class MessageService {
     return null;
   }
 
-  addMessage(message: Message) {
-    this.messages.push(message);
-    this.storeMessages();
+  addMessage(newMessage: Message) {
+    if (!newMessage) {
+      return;
+    }
+
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.http
+      .post<{ message: string; messages: Message; _id: string }>(
+        'http://localhost:3000/Messages',
+        newMessage,
+        { headers: headers }
+      )
+      .subscribe((responseData) => {
+        newMessage.id = responseData._id;
+        this.messages.push(newMessage);
+        this.messageChangeEvent.next([...this.messages]);
+      });
+
+    //this.messages.push(message);
+    //this.storeMessages();
   }
 }

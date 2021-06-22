@@ -1,11 +1,13 @@
 var express = require("express");
 const sequenceGenerator = require("./sequenceGenerator");
 const Contact = require("../models/contacts");
+const { group } = require("console");
 var router = express.Router();
 
 // Fetch contacts from database
 router.get("/", (req, res, next) => {
   Contact.find()
+    .populate("group")
     .then((contacts) => {
       res.status(200).json({
         message: "Contacts fetch successfully.",
@@ -24,13 +26,20 @@ router.get("/", (req, res, next) => {
 router.post("/", (req, res, next) => {
   const maxContactId = sequenceGenerator.nextId("contacts");
 
+  let groups = [];
+  console.log(req.body.group);
+
+  for (let g of groups) {
+    groups.push(g.id);
+  }
+
   const contact = new Contact({
     id: maxContactId,
     name: req.body.name,
     email: req.body.email,
     phone: req.body.phone,
     imageUrl: req.body.imageUrl,
-    group: req.body.group,
+    group: groups,
   });
 
   contact

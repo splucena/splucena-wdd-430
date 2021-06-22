@@ -32,7 +32,7 @@ export class ContactService {
               email: contact.email,
               phone: contact.phone,
               imageUrl: contact.imageUrl,
-              group: [],
+              group: contact.group,
             };
           });
         })
@@ -80,6 +80,8 @@ export class ContactService {
     if (!newContact) {
       return;
     }
+
+    console.log(newContact);
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http

@@ -40,6 +40,7 @@ export class ContactEditComponent implements OnInit {
       this.contact = JSON.parse(JSON.stringify(this.originalContact));
 
       if (this.contact.group) {
+        console.log(this.contact.group);
         this.groupContacts = JSON.parse(JSON.stringify(this.contact.group));
       }
     });
@@ -55,8 +56,6 @@ export class ContactEditComponent implements OnInit {
       value.imageUrl,
       this.groupContacts
     );
-
-    console.log(newContact);
 
     if (this.editMode) {
       this.contactService.udpateContact(this.originalContact, newContact);
