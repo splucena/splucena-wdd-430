@@ -18,7 +18,6 @@ export class MessageService {
   }
 
   selectedMessageEvent = new EventEmitter<Message>();
-  //messageChangeEvent = new EventEmitter<Message[]>();
   messageChangeEvent = new Subject<Message[]>();
 
   getMessages(): any {
@@ -94,7 +93,7 @@ export class MessageService {
       }>('http://localhost:3000/messages', newMessage, { headers: headers })
       .subscribe((responseData) => {
         newMessage.id = responseData._id;
-        newMessage.sender = responseData.senderName;
+        newMessage.sender = 'Mark Olaveson';
         this.messages.push(newMessage);
         this.messageChangeEvent.next([...this.messages]);
       });

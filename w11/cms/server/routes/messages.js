@@ -5,6 +5,7 @@ const messages = require("../models/messages");
 const Message = require("../models/messages");
 const sequenceGenerator = require("./sequenceGenerator");
 var router = express.Router();
+const Contact = require("../models/contacts");
 
 router.get("/", (req, res, next) => {
   Message.find()
@@ -36,12 +37,10 @@ router.post("/", (req, res, next) => {
   message
     .save()
     .then((createdMessage) => {
-      console.log(createdMessage.sender.name);
       res.status(201).json({
         message: "Message added successfully.",
         messages: createdMessage,
         _id: createdMessage._id,
-        senderName: createdMessage.sender.name,
       });
     })
     .catch((err) => {

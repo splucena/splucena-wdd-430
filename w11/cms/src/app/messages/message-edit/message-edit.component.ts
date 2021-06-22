@@ -36,6 +36,7 @@ export class MessageEditComponent implements OnInit {
       this.currentSender
     );
     this.messageService.addMessage(newMessage);
+    this.onClear();
   }
 
   onClear() {
