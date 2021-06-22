@@ -27,9 +27,8 @@ router.post("/", (req, res, next) => {
   const maxContactId = sequenceGenerator.nextId("contacts");
 
   let groups = [];
-  console.log(req.body.group);
 
-  for (let g of groups) {
+  for (let g of req.body.group) {
     groups.push(g.id);
   }
 
@@ -62,11 +61,17 @@ router.post("/", (req, res, next) => {
 router.put("/:id", (req, res, next) => {
   Contact.findOne({ _id: req.params.id })
     .then((contact) => {
+      let groups = [];
+
+      for (let g of req.body.group) {
+        groups.push(g.id);
+      }
+
       contact.name = req.body.name;
       contact.email = req.body.email;
       contact.phone = req.body.phone;
       contact.imageUrl = req.body.imageUrl;
-      contact.group = req.body.group;
+      contact.group = groups;
 
       Contact.updateOne({ _id: req.params.id }, contact).then((result) => {
         res.status(204).json({

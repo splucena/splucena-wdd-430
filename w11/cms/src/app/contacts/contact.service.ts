@@ -81,8 +81,6 @@ export class ContactService {
       return;
     }
 
-    console.log(newContact);
-
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http
       .post<{ message: string; contact: Contact; _id: string }>(
