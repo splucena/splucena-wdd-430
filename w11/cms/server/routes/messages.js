@@ -33,21 +33,23 @@ router.post("/", (req, res, next) => {
     sender: mongoose.Types.ObjectId("60cf0f1d6de71d35cc5e1610"),
   });
 
-  message.save().then((createdMessage) => {
-    res
-      .status(201)
-      .json({
+  message
+    .save()
+    .then((createdMessage) => {
+      console.log(createdMessage.sender.name);
+      res.status(201).json({
         message: "Message added successfully.",
         messages: createdMessage,
         _id: createdMessage._id,
-      })
-      .catch((err) => {
-        res.status(500).json({
-          message: "An error occurred.",
-          error: err,
-        });
+        senderName: createdMessage.sender.name,
       });
-  });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "An error occurred.",
+        error: err,
+      });
+    });
 });
 
 module.exports = router;

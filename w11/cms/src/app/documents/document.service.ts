@@ -94,7 +94,7 @@ export class DocumentService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http
       .post<{ message: string; document: Document; _id: string }>(
-        'http://localhost:3000/Documents',
+        'http://localhost:3000/documents',
         newDocument,
         { headers: headers }
       )

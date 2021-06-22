@@ -14,6 +14,10 @@ function SequenceGenerator() {
       });
     }
 
+    console.log(sequence);
+    console.log(sequence._id);
+    console.log(sequence.maxMessageId);
+
     sequenceId = sequence._id;
     maxDocumentId = sequence.maxDocumentId;
     maxMessageId = sequence.maxMessageId;

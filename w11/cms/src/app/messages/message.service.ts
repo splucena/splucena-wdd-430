@@ -27,7 +27,6 @@ export class MessageService {
       .pipe(
         map((messageData) => {
           return messageData.messages.map((message) => {
-            console.log(message.sender.name);
             return {
               id: message._id,
               subject: message.subject,
@@ -87,18 +86,17 @@ export class MessageService {
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http
-      .post<{ message: string; messages: Message; _id: string }>(
-        'http://localhost:3000/Messages',
-        newMessage,
-        { headers: headers }
-      )
+      .post<{
+        message: string;
+        messages: Message;
+        _id: string;
+        senderName: string;
+      }>('http://localhost:3000/messages', newMessage, { headers: headers })
       .subscribe((responseData) => {
         newMessage.id = responseData._id;
+        newMessage.sender = responseData.senderName;
         this.messages.push(newMessage);
         this.messageChangeEvent.next([...this.messages]);
       });
-
-    //this.messages.push(message);
-    //this.storeMessages();
   }
 }
