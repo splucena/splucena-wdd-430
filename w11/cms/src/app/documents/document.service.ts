@@ -22,21 +22,6 @@ export class DocumentService {
   documentChangeEvent = new Subject<Document[]>();
 
   getDocuments(): any {
-    // this.http
-    //   .get('https://openerp-204808-default-rtdb.firebaseio.com/documents.json')
-    //   .subscribe(
-    //     (documents: Document[]) => {
-    //       this.documents = documents;
-    //       this.maxDocumentId = this.getMaxId();
-    //       this.documents.sort((a, b) =>
-    //         a.name > b.name ? 1 : b.name > a.name ? -1 : 0
-    //       );
-    //       this.documentChangeEvent.next(this.documents.slice());
-    //     },
-    //     (error: any) => {
-    //       console.log(error.message);
-    //     }
-    //   );
     this.http
       .get<{ message: string; documents: any }>(
         'http://localhost:3000/documents'
