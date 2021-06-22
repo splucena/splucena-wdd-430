@@ -43,6 +43,8 @@ export class ContactEditComponent implements OnInit {
         console.log(this.contact.group);
         this.groupContacts = JSON.parse(JSON.stringify(this.contact.group));
       }
+
+      
     });
   }
 
