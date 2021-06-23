@@ -2,13 +2,19 @@
   <div class="panel-heading clearfix">
     <div class="row m-2">
       <div class="col-md-12">
-        <h2 class="pull-left" style="margin-top: 0; margin-bottom: 0;">{{ contact?.name }}</h2>
+        <h2 class="pull-left" style="margin-top: 0; margin-bottom: 0">
+          {{ contact?.name }}
+        </h2>
       </div>
     </div>
-    <br>
+    <br />
     <div class="row">
-      <div class="col-md-2" *ngIf="contact.imageUrl !== ' '; else empty">
-        <img src="{{ contact.imageUrl }}" style="width: 50px; height:70px" alt="{{ contact.name }}">
+      <div class="col-md-2" *ngIf="contact.imageUrl; else empty">
+        <img
+          src="{{ contact.imageUrl }}"
+          style="width: 50px; height: 70px"
+          alt="{{ contact.name }}"
+        />
       </div>
       <ng-template #empty>
         <div class="col-md-2">No image available.</div>
