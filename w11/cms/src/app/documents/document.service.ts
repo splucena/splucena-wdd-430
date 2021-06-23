@@ -34,7 +34,7 @@ export class DocumentService {
               description: document.description,
               url: document.url,
               children: document.children,
-              id: document._id,
+              id: document.id,
             };
           });
         })
@@ -93,13 +93,13 @@ export class DocumentService {
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http
-      .post<{ message: string; document: Document; _id: string }>(
+      .post<{ message: string; document: Document; id: string }>(
         'http://localhost:3000/documents',
         newDocument,
         { headers: headers }
       )
       .subscribe((responseData) => {
-        newDocument.id = responseData._id;
+        newDocument.id = responseData.id;
         this.documents.push(newDocument);
         this.documentChangeEvent.next([...this.documents]);
       });

@@ -36,7 +36,7 @@ router.post("/", (req, res, next) => {
       res.status(201).json({
         message: "Document added successfully",
         document: createdDocument,
-        _id: createdDocument._id,
+        id: createdDocument.id,
       });
     })
     .catch((err) => {
@@ -48,13 +48,13 @@ router.post("/", (req, res, next) => {
 });
 
 router.put("/:id", (req, res, next) => {
-  Document.findOne({ _id: req.params.id })
+  Document.findOne({ id: req.params.id })
     .then((document) => {
       document.name = req.body.name;
       document.description = req.body.description;
       document.url = req.body.url;
 
-      Document.updateOne({ _id: req.params.id }, document).then((result) => {
+      Document.updateOne({ id: req.params.id }, document).then((result) => {
         res.status(204).json({
           message: "Document updated successfully.",
         });
@@ -69,9 +69,9 @@ router.put("/:id", (req, res, next) => {
 });
 
 router.delete("/:id", (req, res, next) => {
-  Document.findOne({ _id: req.params.id })
+  Document.findOne({ id: req.params.id })
     .then((document) => {
-      Document.deleteOne({ _id: req.params.id }).then((result) => {
+      Document.deleteOne({ id: req.params.id }).then((result) => {
         res.status(204).json({
           message: "Document deleted successfully.",
         });
