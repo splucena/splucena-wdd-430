@@ -116,7 +116,6 @@ export class DocumentService {
     }
 
     newDocument.id = originalDocument.id;
-    //newDocument._id = originalDocument._id;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http
       .put(

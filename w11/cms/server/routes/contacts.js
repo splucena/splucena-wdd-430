@@ -25,11 +25,12 @@ router.get("/", (req, res, next) => {
 // Create contact
 router.post("/", (req, res, next) => {
   const maxContactId = sequenceGenerator.nextId("contacts");
+  const maxMessageId = sequenceGenerator.nextId("messages");
 
   let groups = [];
 
   for (let g of req.body.group) {
-    groups.push(g.id);
+    groups.push(g._id);
   }
 
   const contact = new Contact({
@@ -47,7 +48,7 @@ router.post("/", (req, res, next) => {
       res.status(201).json({
         message: "contact added successfully",
         contact: createdContact,
-        _id: createdContact._id,
+        id: createdContact.id,
       });
     })
     .catch((err) => {
@@ -59,7 +60,7 @@ router.post("/", (req, res, next) => {
 });
 
 router.put("/:id", (req, res, next) => {
-  Contact.findOne({ _id: req.params.id })
+  Contact.findOne({ id: req.params.id })
     .then((contact) => {
       let groups = [];
 
@@ -73,7 +74,7 @@ router.put("/:id", (req, res, next) => {
       contact.imageUrl = req.body.imageUrl;
       contact.group = groups;
 
-      Contact.updateOne({ _id: req.params.id }, contact).then((result) => {
+      Contact.updateOne({ id: req.params.id }, contact).then((result) => {
         res.status(204).json({
           message: "Contact updated successfully.",
         });
@@ -88,9 +89,9 @@ router.put("/:id", (req, res, next) => {
 });
 
 router.delete("/:id", (req, res, next) => {
-  Contact.findOne({ _id: req.params.id })
+  Contact.findOne({ id: req.params.id })
     .then((contact) => {
-      Contact.deleteOne({ _id: req.params.id }).then((result) => {
+      Contact.deleteOne({ id: req.params.id }).then((result) => {
         res.status(204).json({
           message: "Contact deleted successfully.",
         });

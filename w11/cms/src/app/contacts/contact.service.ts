@@ -27,7 +27,7 @@ export class ContactService {
         map((contactData) => {
           return contactData.contacts.map((contact) => {
             return {
-              id: contact._id,
+              id: contact.id,
               name: contact.name,
               email: contact.email,
               phone: contact.phone,
@@ -83,13 +83,13 @@ export class ContactService {
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http
-      .post<{ message: string; contact: Contact; _id: string }>(
-        'http://localhost:3000/Contacts',
+      .post<{ message: string; contact: Contact; id: string }>(
+        'http://localhost:3000/contacts',
         newContact,
         { headers: headers }
       )
       .subscribe((responseData) => {
-        newContact.id = responseData._id;
+        newContact.id = responseData.id;
         this.contacts.push(newContact);
         this.contactChangeEvent.next([...this.contacts]);
       });
