@@ -74,28 +74,36 @@ router.post("/", (req, res, next) => {
 
 router.put("/:id", (req, res, next) => {
   Contact.findOne({ id: req.params.id })
-    .populate("group")
     .then((contact) => {
-      //let groups = [];
+      let getGroups = async () => {
+        let groups = [];
+        for (let g of req.body.group) {
+          let contactGroup = await Contact.findOne({ id: g.id });
+          groups.push(contactGroup._id);
+        }
+        return groups;
+      };
 
-      // for (let g of req.body.group) {
-      //    let _id = Contact.findById(g.id);
-      //    groups.push(_id);
-      // }
+      getGroups()
+        .then((groupResult) => {
+          contact.name = req.body.name;
+          contact.email = req.body.email;
+          contact.phone = req.body.phone;
+          contact.imageUrl = req.body.imageUrl;
+          contact.group = groupResult;
 
-      console.log(contact);
-
-      contact.name = req.body.name;
-      contact.email = req.body.email;
-      contact.phone = req.body.phone;
-      contact.imageUrl = req.body.imageUrl;
-      contact.group = req.body.group;
-
-      Contact.updateOne({ id: req.params.id }, contact).then((result) => {
-        res.status(204).json({
-          message: "Contact updated successfully.",
+          Contact.updateOne({ id: req.params.id }, contact).then((result) => {
+            res.status(204).json({
+              message: "Contact updated successfully.",
+            });
+          });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            message: "Contact not found.",
+            error: { contact: "Contact not found." },
+          });
         });
-      });
     })
     .catch((err) => {
       res.status(500).json({
