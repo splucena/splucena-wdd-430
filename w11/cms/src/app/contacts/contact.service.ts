@@ -25,6 +25,7 @@ export class ContactService {
       .get<{ message: string; contacts: any }>('http://localhost:3000/contacts')
       .pipe(
         map((contactData) => {
+          console.log(contactData.contacts);
           return contactData.contacts.map((contact) => {
             return {
               id: contact.id,
