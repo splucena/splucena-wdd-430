@@ -1,0 +1,14 @@
+/*
+    #25274D
+    #464866
+    #AAABBB
+    #2E9CCA
+    #29648A
+*/
+
+.banner {
+    background-color: #2D2D2D;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #EBEBEB;
+}
