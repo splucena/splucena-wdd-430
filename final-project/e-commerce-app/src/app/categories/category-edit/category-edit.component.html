@@ -1,1 +1,47 @@
-<p>category-edit works!</p>
+<div style="height: 70px"></div>
+<div class="category-form mb-4">
+  <span class="h3">{{ editMode ? "Edit" : "Add" }} Category</span>
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="mt-3">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input
+        type="text"
+        name="name"
+        matInput
+        placeholder="Nike"
+        [ngModel]="category?.name"
+        #categoryName
+        required
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        name="description"
+        cols="30"
+        rows="5"
+        placeholder="Basketball shoe for everyone."
+        [ngModel]="category?.description"
+        required
+      ></textarea>
+    </mat-form-field>
+    <button
+      [disabled]="!f.valid"
+      color="accent"
+      mat-raised-button
+      type="submit"
+    >
+      SAVE
+    </button>
+    <button
+      color="accent"
+      class="ms-2"
+      mat-raised-button
+      type="button"
+      (click)="onCancel()"
+    >
+      CANCEL
+    </button>
+  </form>
+</div>

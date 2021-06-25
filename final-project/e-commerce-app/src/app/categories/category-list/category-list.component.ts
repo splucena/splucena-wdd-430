@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Category } from '../categories.model';
-import { CategoriesService } from '../categories.service';
+import { CategoryService } from '../categories.service';
 
 @Component({
   selector: 'app-category-list',
@@ -15,7 +15,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
   searchTerm: string = '';
 
   constructor(
-    private categoryService: CategoriesService,
+    private categoryService: CategoryService,
     private router: Router,
     private route: ActivatedRoute
   ) {}

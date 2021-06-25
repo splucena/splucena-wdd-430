@@ -5,7 +5,7 @@ import { Product } from '../product.model';
 import { ProductsService } from '../products.service';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/categories/categories.model';
-import { CategoriesService } from 'src/app/categories/categories.service';
+import { CategoryService } from 'src/app/categories/categories.service';
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
@@ -22,7 +22,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     private productService: ProductsService,
     private router: Router,
     private route: ActivatedRoute,
-    private categoryService: CategoriesService
+    private categoryService: CategoryService
   ) {}
 
   ngOnInit(): void {
