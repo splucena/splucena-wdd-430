@@ -1,7 +1,8 @@
 <app-header></app-header>
 <br />
 <div class="container">
-  <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+  <router-outlet></router-outlet>
+  <!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
     {{ !isLinear ? "Enable linear mode" : "Disable linear mode" }}
   </button>
   <mat-horizontal-stepper [linear]="isLinear" #stepper>
@@ -47,5 +48,5 @@
         <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
     </mat-step>
-  </mat-horizontal-stepper>
+  </mat-horizontal-stepper> -->
 </div>

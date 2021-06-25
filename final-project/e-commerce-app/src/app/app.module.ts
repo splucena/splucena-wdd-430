@@ -14,9 +14,24 @@ import { MatMenuModule } from '@angular/material/menu';
 
 // Local Components
 import { HeaderComponent } from './header/header.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductListComponent } from './products/product-list/product-list.component';
+import { ProductItemComponent } from './products/product-list/product-item/product-item.component';
+import { ProductStartComponent } from './products/product-start/product-start.component';
+import { ProductDetailComponent } from './products/product-detail/product-detail.component';
+import { ProductEditComponent } from './products/product-edit/product-edit.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    ProductsComponent,
+    ProductListComponent,
+    ProductItemComponent,
+    ProductStartComponent,
+    ProductDetailComponent,
+    ProductEditComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
