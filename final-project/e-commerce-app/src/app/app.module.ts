@@ -32,6 +32,7 @@ import { CategoryItemComponent } from './categories/category-list/category-item/
 import { CategoryStartComponent } from './categories/category-start/category-start.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { CategoriesFilterPipe } from './categories/categories.filter';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     CategoryStartComponent,
     CartComponent,
     CheckoutComponent,
+    CategoriesFilterPipe,
   ],
   imports: [
     BrowserModule,

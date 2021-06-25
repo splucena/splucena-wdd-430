@@ -1,1 +1,26 @@
-<p>category-item works!</p>
+<mat-card class="example-card mb-4">
+  <mat-card-title>{{ category.name | uppercase }}</mat-card-title>
+  <mat-card-content>
+    <p>
+      {{ category?.description }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions class="full-width me-0 pe-0">
+    <button
+      color="accent"
+      class="half-width"
+      mat-raised-button
+      [routerLink]="[category.id + '/edit']"
+    >
+      EDIT
+    </button>
+    <button
+      (click)="deleteCategory()"
+      color="accent"
+      class="half-width me-0 pull-right"
+      mat-raised-button
+    >
+      DELETE
+    </button>
+  </mat-card-actions>
+</mat-card>

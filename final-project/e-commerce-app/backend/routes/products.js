@@ -81,7 +81,7 @@ router.delete("/:id", (req, res, next) => {
     .then((product) => {
       Product.deleteOne({ id: req.params.id }).then((result) => {
         res.status(204).json({
-          message: "Document deleted successfully.",
+          message: "Product deleted successfully.",
         });
       });
     })
