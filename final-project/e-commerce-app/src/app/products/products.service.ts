@@ -24,7 +24,7 @@ export class ProductsService {
               name: product.name,
               description: product.description,
               imageUrl: product.imageUrl,
-              price: product.price,
+              price: product.price.$numberDecimal,
               category: product.category,
             };
           });
@@ -40,6 +40,7 @@ export class ProductsService {
   getProduct(id: string) {
     for (let p of this.products) {
       if (p.id === id) {
+        //console.log(p);
         return p;
       }
     }

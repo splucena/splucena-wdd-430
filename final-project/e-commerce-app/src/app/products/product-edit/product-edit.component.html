@@ -10,6 +10,7 @@
         matInput
         placeholder="Nike"
         [ngModel]="product?.name"
+        #productName
       />
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
@@ -31,8 +32,12 @@
         matInput
         placeholder="../assets/images/shoes-1.jpg"
         [ngModel]="product?.imageUrl"
+        #imageUrl
       />
     </mat-form-field>
+    <div>
+      <img [src]="imageUrl.value" alt="productName.value" />
+    </div>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Price</mat-label>
       <input
