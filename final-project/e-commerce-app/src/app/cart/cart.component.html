@@ -1,1 +1,37 @@
-<p>cart works!</p>
+<div class="row">
+  <div class="col col-md-6">
+    <span class="h3">Your Cart!</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col col-md-6">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of cart; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ c.productName }}</td>
+          <td class="text-center">{{ c.quantity }}</td>
+          <td class="text-end">${{ c.price }}</td>
+          <td class="text-end">${{ c.quantity * c.price }}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Total</td>
+          <td class="text-end">${{ total || 0.0 }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button mat-raised-button color="primary" appearnce="fill" class="pull-right mb-2" (click)="checkout()">Proceed to Checout</button>
+  </div>
+</div>

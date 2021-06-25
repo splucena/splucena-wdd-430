@@ -12,6 +12,7 @@
           placeholder="Last name, First name"
           formControlName="firstCtrl"
           required
+          #name
         />
       </mat-form-field>
       <div>
@@ -28,6 +29,7 @@
           formControlName="secondCtrl"
           placeholder="Ex. 1 Main St, New York, NY"
           required
+          #address
         />
       </mat-form-field>
       <div>
@@ -37,7 +39,38 @@
     </form>
   </mat-step>
   <mat-step label="Complete Checkout">
-    <p>You are almost there.</p>
+    <p class="h3">Summary of Charges</p>
+    <div class="row">
+      <div class="col col-md-6">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of cart; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ c.productName }}</td>
+              <td class="text-center">{{ c.quantity }}</td>
+              <td class="text-end">${{ c.price }}</td>
+              <td class="text-end">${{ c.quantity * c.price }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Total</td>
+              <td class="text-end">${{ total || 0.0 }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button
@@ -52,7 +85,48 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
-    <p class="h3">Thank you for shopping with us!</p>
+    <div class="row">
+      <div class="col col-md-6">
+        <p class="h3 text-center">Thank you for shopping with us!</p>
+        <p class="h3 text-center">Official Receipt</p>
+        <div>
+          <span> Charged To: {{ name.value }}</span
+          ><br />
+          <span> Address: {{ address.value }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-md-6">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of cart; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ c.productName }}</td>
+              <td class="text-center">{{ c.quantity }}</td>
+              <td class="text-end">${{ c.price }}</td>
+              <td class="text-end">${{ c.quantity * c.price }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>Total</td>
+              <td class="text-end">${{ total || 0.0 }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     <p>Checkout complete!</p>
     <p>We hope to see you again!</p>
     <div>

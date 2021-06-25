@@ -38,8 +38,6 @@ export class CartService {
   }
 
   addToCart(name: string, price: number) {
-    console.log(name, price);
-
     // Check if product is already in the cart
     let checkCart = this.getInCart(name);
 
@@ -64,5 +62,9 @@ export class CartService {
 
   getCart() {
     return this.counter;
+  }
+
+  getCartContent() {
+    return this.cart.slice();
   }
 }
