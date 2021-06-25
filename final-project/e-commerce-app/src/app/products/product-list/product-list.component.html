@@ -2,7 +2,13 @@
   <div class="col col-md-8">
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Search</mat-label>
-      <input matInput type="text" placeholder="Playstation" />
+      <input
+        matInput
+        type="text"
+        #searchBox
+        placeholder="Playstation"
+        (keyup)="search(searchBox.value)"
+      />
     </mat-form-field>
   </div>
   <div class="col col-md-4 mt-2">
@@ -12,7 +18,7 @@
       class="pull-right"
       (click)="onNewProduct()"
     >
-      Add Product
+      New Product
     </button>
   </div>
 </div>
@@ -20,7 +26,8 @@
   <div class="row">
     <app-product-item
       class="col col-md-4"
-      *ngFor="let p of products"
+      style="min-width: 250px"
+      *ngFor="let p of products | productsFilter: searchTerm"
       [product]="p"
     ></app-product-item>
   </div>

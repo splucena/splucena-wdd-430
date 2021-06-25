@@ -23,6 +23,8 @@ import { ProductDetailComponent } from './products/product-detail/product-detail
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductsFilterPipe } from './products/products-filter.pipe';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProductDetailComponent,
     ProductEditComponent,
     HomeComponent,
+    ProductsFilterPipe,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
-<div style="height: 28px"></div>
+<div style="height: 70px"></div>
 <div class="product-form">
-  <h3>Add New Product</h3>
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <span class="h3">{{ editMode ? "Edit" : "Add" }} Product</span>
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="mt-3">
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Name</mat-label>
       <input

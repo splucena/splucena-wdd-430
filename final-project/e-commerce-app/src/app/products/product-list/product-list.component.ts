@@ -12,6 +12,7 @@ import { ProductsService } from '../products.service';
 export class ProductListComponent implements OnInit, OnDestroy {
   public products: Product[] = [];
   private subscription: Subscription;
+  searchTerm: string = '';
 
   constructor(
     private productService: ProductsService,
@@ -30,6 +31,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   onNewProduct() {
     this.router.navigate(['new'], { relativeTo: this.route });
+  }
+
+  search(value: string) {
+    this.searchTerm = value;
   }
 
   ngOnDestroy() {

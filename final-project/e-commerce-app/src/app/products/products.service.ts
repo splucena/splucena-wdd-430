@@ -31,7 +31,6 @@ export class ProductsService {
         })
       )
       .subscribe((transformedProduct) => {
-        console.log(transformedProduct);
         this.products = transformedProduct;
         this.productChangeEvent.next([...this.products]);
       });
