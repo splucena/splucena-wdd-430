@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { CartService } from '../cart/cart.service';
 import { Product } from '../products/product.model';
 import { ProductsService } from '../products/products.service';
 
@@ -13,7 +14,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   searchTerm: string = '';
 
-  constructor(private productService: ProductsService) {}
+  constructor(
+    private productService: ProductsService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.products = this.productService.getProducts();
@@ -26,6 +30,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   search(value: string) {
     this.searchTerm = value;
+  }
+
+  addToCart() {
+    this.cartService.addToCart();
   }
 
   ngOnDestroy() {

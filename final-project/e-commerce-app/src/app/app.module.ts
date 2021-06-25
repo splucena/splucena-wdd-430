@@ -30,6 +30,8 @@ import { CategoryListComponent } from './categories/category-list/category-list.
 import { CategoryEditComponent } from './categories/category-edit/category-edit.component';
 import { CategoryItemComponent } from './categories/category-list/category-item/category-item.component';
 import { CategoryStartComponent } from './categories/category-start/category-start.component';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { CategoryStartComponent } from './categories/category-start/category-sta
     CategoryEditComponent,
     CategoryItemComponent,
     CategoryStartComponent,
+    CartComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

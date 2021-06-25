@@ -24,14 +24,17 @@
       {{ product?.description }}
     </p>
   </mat-card-content>
-  <mat-card-actions>
+  <mat-card-actions class="full-width me-0 pe-0">
     <button
       color="accent"
+      class="half-width"
       mat-raised-button
       [routerLink]="[product.id + '/edit']"
     >
       EDIT
     </button>
-    <button color="accent" mat-raised-button>DELETE</button>
+    <button color="accent" class="half-width me-0 pull-right" mat-raised-button>
+      DELETE
+    </button>
   </mat-card-actions>
 </mat-card>

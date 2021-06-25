@@ -6,6 +6,10 @@
     #29648A
 */
 
+.arial {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .banner {
   background-color: #2d2d2d;
   display: flex;
