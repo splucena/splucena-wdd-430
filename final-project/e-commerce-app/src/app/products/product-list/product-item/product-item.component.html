@@ -33,7 +33,12 @@
     >
       EDIT
     </button>
-    <button color="accent" class="half-width me-0 pull-right" mat-raised-button>
+    <button
+      (click)="deleteProduct()"
+      color="accent"
+      class="half-width me-0 pull-right"
+      mat-raised-button
+    >
       DELETE
     </button>
   </mat-card-actions>

@@ -83,4 +83,22 @@ export class ProductsService {
         this.productChangeEvent.next([...this.products]);
       });
   }
+
+  deleteProduct(product: Product) {
+    if (!product) {
+      return;
+    }
+
+    const pos = this.products.indexOf(product);
+    if (pos < 0) {
+      return;
+    }
+
+    this.http
+      .delete('http://localhost:3000/products/' + product.id)
+      .subscribe((response: Response) => {
+        this.products.splice(pos, 1);
+        this.productChangeEvent.next([...this.products]);
+      });
+  }
 }

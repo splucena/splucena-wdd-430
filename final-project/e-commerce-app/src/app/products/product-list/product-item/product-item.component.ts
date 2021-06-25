@@ -1,5 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Product } from '../../product.model';
+import { ProductsService } from '../../products.service';
 
 @Component({
   selector: 'app-product-item',
@@ -12,8 +14,25 @@ export class ProductItemComponent implements OnInit {
     'https://material.angular.io/assets/img/examples/shiba2.jpg';
   public defaultAvatar: string =
     'https://material.angular.io/assets/img/examples/shiba1.jpg';
+  productDelete: Product;
+  id: string;
 
-  constructor() {}
+  constructor(
+    private productService: ProductsService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.id = params['id'];
+      this.productDelete = this.productService.getProduct(this.id);
+    });
+  }
+
+  deleteProduct() {
+    //this.productService.deleteProduct(id);
+    this.productService.deleteProduct(this.product);
+    this.router.navigate(['/products']);
+  }
 }
