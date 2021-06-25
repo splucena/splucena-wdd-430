@@ -31,9 +31,20 @@ export class ProductsService {
         })
       )
       .subscribe((transformedProduct) => {
+        console.log(transformedProduct);
         this.products = transformedProduct;
         this.productChangeEvent.next([...this.products]);
       });
+  }
+
+  getProduct(id: string) {
+    for (let p of this.products) {
+      if (p.id === id) {
+        return p;
+      }
+    }
+
+    return null;
   }
 
   addProduct(product: Product) {
@@ -53,6 +64,25 @@ export class ProductsService {
       .subscribe((responseData) => {
         product.id = responseData.id;
         this.products.push(product);
+        this.productChangeEvent.next([...this.products]);
+      });
+  }
+
+  updateProduct(originalProduct: Product, newProduct: Product) {
+    if (!originalProduct || !newProduct) {
+      return;
+    }
+
+    const pos = this.products.indexOf(originalProduct);
+
+    newProduct.id = originalProduct.id;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.http
+      .put('http://localhost:3000/products/' + originalProduct.id, newProduct, {
+        headers: headers,
+      })
+      .subscribe((response: Response) => {
+        this.products[pos] = newProduct;
         this.productChangeEvent.next([...this.products]);
       });
   }

@@ -34,8 +34,6 @@ router.post("/", (req, res, next) => {
     category: req.body.category,
   });
 
-  console.log(product);
-
   product
     .save()
     .then((createdProduct) => {
@@ -51,6 +49,30 @@ router.post("/", (req, res, next) => {
         error: error,
       });
     });
+});
+
+// Update product
+router.put("/:id", (req, res, next) => {
+  Product.findOne({ id: req.params.id }).then((product) => {
+    product.name = req.body.name;
+    product.description = req.body.description;
+    product.imageUrl = req.body.imageUrl;
+    product.price = req.body.price;
+    //product.category = req.body.category;
+
+    Product.updateOne({ id: req.params.id }, product)
+      .then((result) => {
+        res.status(204).json({
+          message: "Updated product successfully.",
+        });
+      })
+      .catch((error) => {
+        res.status(500).json({
+          message: "Product not found",
+          error: error,
+        });
+      });
+  });
 });
 
 module.exports = router;

@@ -8,7 +8,7 @@
     ></div>
     <mat-card-title>{{ product.name | uppercase }}</mat-card-title>
     <mat-card-subtitle>{{
-      product.category || "No Category"
+      product?.category || "No Category"
     }}</mat-card-subtitle>
   </mat-card-header>
   <img
@@ -18,12 +18,19 @@
     style="min-height: 200px; max-height: 200px"
   />
   <mat-card-content>
+    <h3>${{ product?.price.$numberDecimal || product?.price }}</h3>
     <p>
-      {{ product.description }}
+      {{ product?.description }}
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button color="accent" mat-raised-button>EDIT</button>
+    <button
+      color="accent"
+      mat-raised-button
+      [routerLink]="[product.id + '/edit']"
+    >
+      EDIT
+    </button>
     <button color="accent" mat-raised-button>DELETE</button>
   </mat-card-actions>
 </mat-card>

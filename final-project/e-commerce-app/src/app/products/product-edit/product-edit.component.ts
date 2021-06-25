@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Product } from '../product.model';
 import { ProductsService } from '../products.service';
 @Component({
@@ -19,7 +19,24 @@ export class ProductEditComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      const id = params['id'];
+      if (!id) {
+        this.editMode = false;
+        return;
+      }
+
+      this.originalProduct = this.productService.getProduct(id);
+
+      if (!this.originalProduct) {
+        return;
+      }
+
+      this.editMode = true;
+      this.product = JSON.parse(JSON.stringify(this.originalProduct));
+    });
+  }
 
   onSubmit(form: NgForm) {
     const value = form.value;
@@ -34,7 +51,7 @@ export class ProductEditComponent implements OnInit {
 
     if (this.editMode) {
       // Update product
-      console.log('Update product.');
+      this.productService.updateProduct(this.originalProduct, product);
     } else {
       this.productService.addProduct(product);
     }
