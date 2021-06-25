@@ -7,9 +7,13 @@
 */
 
 .banner {
-    background-color: #2D2D2D;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #EBEBEB;
-    border-top: 1px solid #EBEBEB;
+  background-color: #2d2d2d;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ebebeb;
+  border-top: 1px solid #ebebeb;
+}
+
+.active {
+  background-color: white;
 }

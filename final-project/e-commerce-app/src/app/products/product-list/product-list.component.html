@@ -1,1 +1,27 @@
-<p>product-list works!</p>
+<div class="row">
+  <div class="col col-md-8">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Search</mat-label>
+      <input matInput type="text" placeholder="Playstation" />
+    </mat-form-field>
+  </div>
+  <div class="col col-md-4 mt-2">
+    <button
+      mat-raised-button
+      color="primary"
+      class="pull-right"
+      (click)="onNewProduct()"
+    >
+      Add Product
+    </button>
+  </div>
+</div>
+<div class="product-item">
+  <div class="row">
+    <app-product-item
+      class="col col-md-4"
+      *ngFor="let p of products"
+      [product]="p"
+    ></app-product-item>
+  </div>
+</div>

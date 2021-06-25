@@ -7,36 +7,44 @@
     </div>
   </div>
 </div>
-<div class="shadow-lg banner p-1 sticky-top">
+<div class="shadow banner sticky-top">
   <div class="container">
     <div class="row">
       <div class="col col-md-12 align-middle">
-        <nav class="navbar navbar-expand-md navbar-dark">
+        <nav class="navbar navbar-expand-lg">
           <div class="container-fluid">
             <div class="navbar-header">
-              <a href="#" class="navbar-brand text-light">SP</a>
+              <a href="#" class="navbar-brand">SP</a>
             </div>
             <div class="collapse navbar-collapse">
               <ul class="nav navbar-nav">
-                <li class="nav-item" routerLinkActive>
-                  <a class="nav-link text-warning" routerLink="/home">Home</a>
-                </li>
-                <li class="nav-item" routerLinkActive>
-                  <a class="nav-link text-warning" routerLink="/products"
-                    >Products</a
+                <li
+                  class="nav-item"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                >
+                  <a class="nav-link" routerLink="/home"
+                    ><i class="fa fa-home"></i> Home</a
                   >
                 </li>
-                <li class="nav-item" routerLinkActive>
-                  <a class="nav-link text-warning" routerLink="/categories"
-                    >Categories</a
+                <li class="nav-item" routerLinkActive="active">
+                  <a class="nav-link" routerLink="/products"
+                    ><i class="fa fa-amazon"></i> Products</a
                   >
                 </li>
-                <li class="nav-item" routerLinkActive>
-                  <a class="nav-link text-warning" routerLink="/about">About</a>
+                <li class="nav-item" routerLinkActive="active">
+                  <a class="nav-link" routerLink="/categories"
+                    ><i class="fa fa-list"></i> Categories</a
+                  >
                 </li>
-                <li class="nav-item" routerLinkActive>
-                  <a class="nav-link text-warning" routerLink="/contact-us"
-                    >Contact Us</a
+                <li class="nav-item" routerLinkActive="active">
+                  <a class="nav-link" routerLink="/about"
+                    ><i class="fa fa-question-circle"></i> About</a
+                  >
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                  <a class="nav-link" routerLink="/contact-us"
+                    ><i class="fa fa-phone"></i> Contact Us</a
                   >
                 </li>
               </ul>

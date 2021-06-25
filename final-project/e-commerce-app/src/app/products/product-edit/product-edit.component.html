@@ -1,1 +1,49 @@
-<p>product-edit works!</p>
+<div style="height: 28px"></div>
+<div class="product-form">
+  <h3>Add New Product</h3>
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input
+        type="text"
+        name="name"
+        matInput
+        placeholder="Nike"
+        [ngModel]="product?.name"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        name="description"
+        cols="30"
+        rows="5"
+        placeholder="Basketball shoe for everyone."
+        [ngModel]="product?.description"
+      ></textarea>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Image Path</mat-label>
+      <input
+        type="text"
+        name="imageUrl"
+        matInput
+        placeholder="../assets/images/shoes-1.jpg"
+        [ngModel]="product?.imageUrl"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Price</mat-label>
+      <input
+        type="number"
+        name="price"
+        matInput
+        placeholder="0"
+        [ngModel]="product?.price"
+      />
+    </mat-form-field>
+    <button color="accent" mat-raised-button>SAVE</button>
+    <button color="accent" class="ms-2" mat-raised-button>CANCEL</button>
+  </form>
+</div>

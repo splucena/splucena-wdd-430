@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatCardModule } from '@angular/material/card';
 
 // Local Components
 import { HeaderComponent } from './header/header.component';
@@ -20,6 +21,8 @@ import { ProductItemComponent } from './products/product-list/product-item/produ
 import { ProductStartComponent } from './products/product-start/product-start.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
+import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,7 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
     ProductStartComponent,
     ProductDetailComponent,
     ProductEditComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +48,8 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
     MatStepperModule,
     MatButtonModule,
     MatMenuModule,
+    MatCardModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
