@@ -40,6 +40,7 @@
                   <button
                     type="button"
                     class="btn btn-primary position-relative me-4"
+                    (click)="goToCart()"
                   >
                     <i class="fa fa-cart-plus"></i> Cart
                     <span
@@ -54,12 +55,15 @@
                       "
                     >
                       {{ counter || "0" }}+
-                      <span class="visually-hidden">unread messages</span>
                     </span>
                   </button>
                 </li>
                 <li class="nav-item">
-                  <button type="button" class="btn btn-primary">
+                  <button
+                    type="button"
+                    (click)="goToCheckout()"
+                    class="btn btn-primary"
+                  >
                     <i class="fa fa-credit-card"></i> Checkout
                   </button>
                 </li>

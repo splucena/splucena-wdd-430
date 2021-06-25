@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartService } from '../cart/cart.service';
 
@@ -11,7 +12,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   counter: number;
   private subscription: Subscription;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.counter = this.cartService.getCart();
@@ -24,5 +29,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  goToCart() {
+    this.router.navigate(['/cart'], { relativeTo: this.route });
+  }
+
+  goToCheckout() {
+    this.router.navigate(['/checkout'], { relativeTo: this.route });
   }
 }
