@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../../product.model';
 
 @Component({
@@ -12,6 +12,7 @@ export class ProductItemComponent implements OnInit {
     'https://material.angular.io/assets/img/examples/shiba2.jpg';
   public defaultAvatar: string =
     'https://material.angular.io/assets/img/examples/shiba1.jpg';
+
   constructor() {}
 
   ngOnInit(): void {}

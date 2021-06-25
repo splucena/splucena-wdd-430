@@ -54,11 +54,12 @@ router.post("/", (req, res, next) => {
 // Update product
 router.put("/:id", (req, res, next) => {
   Product.findOne({ id: req.params.id }).then((product) => {
+    console.log(product);
     product.name = req.body.name;
     product.description = req.body.description;
     product.imageUrl = req.body.imageUrl;
     product.price = req.body.price;
-    //product.category = req.body.category;
+    product.category = req.body.category;
 
     Product.updateOne({ id: req.params.id }, product)
       .then((result) => {

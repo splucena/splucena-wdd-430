@@ -26,6 +26,7 @@ mongoose.connect(
 // const documentRoutes = require("./server/routes/documents");
 
 const productRoutes = require("./backend/routes/products");
+const categoryRoutes = require("./backend/routes/categories");
 
 // ... ADD CODE TO IMPORT YOUR ROUTING FILES HERE ...
 
@@ -66,6 +67,7 @@ app.use(express.static(path.join(__dirname, "dist/cms")));
 // app.use("/contacts", contactRoutes);
 // app.use("/documents", documentRoutes);
 app.use("/products", productRoutes);
+app.use("/categories", categoryRoutes);
 
 // ... ADD YOUR CODE TO MAP YOUR URL'S TO ROUTING FILES HERE ...
 // TEll express to map all other non-defined routes back to the index page
