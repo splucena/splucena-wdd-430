@@ -1,4 +1,9 @@
-<button mat-raised-button class="mb-2" (click)="isLinear = !isLinear" id="toggle-linear">
+<button
+  mat-raised-button
+  class="mb-2"
+  (click)="isLinear = !isLinear"
+  id="toggle-linear"
+>
   {{ !isLinear ? "Enable linear mode" : "Disable linear mode" }}
 </button>
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
@@ -65,7 +70,7 @@
               <td></td>
               <td></td>
               <td>Total</td>
-              <td class="text-end">${{ total || 0.0 }}</td>
+              <td class="text-end">${{ total | number: "1.2-2" }}</td>
             </tr>
           </tbody>
         </table>
@@ -121,7 +126,7 @@
               <td></td>
               <td></td>
               <td>Total</td>
-              <td class="text-end">${{ total || 0.0 }}</td>
+              <td class="text-end">${{ total | number: "1.2-2" }}</td>
             </tr>
           </tbody>
         </table>
