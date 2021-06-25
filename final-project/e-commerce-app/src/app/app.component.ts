@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,18 +7,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AppComponent {
   title = 'e-commerce-app';
-  isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required],
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required],
-    });
-  }
+  ngOnInit() {}
 }

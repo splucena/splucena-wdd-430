@@ -16,7 +16,8 @@ export class CartService {
   }
 
   clearCart() {
-    return (this.counter = 0);
+    this.counter = 0;
+    this.cartCounterChange.next(this.counter);
   }
 
   getCart() {
