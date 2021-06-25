@@ -2,9 +2,10 @@
   <mat-card-header>
     <div
       mat-card-avatar
-      style="background-image: url({{
-        product.imageUrl || defaultAvatar
-      }}); background-size: cover;"
+      [ngStyle]="{
+        background: 'url(' + product.imageUrl + ')',
+        backgroundSize: 'cover'
+      }"
     ></div>
     <mat-card-title>{{ product.name | uppercase }}</mat-card-title>
     <mat-card-subtitle>{{

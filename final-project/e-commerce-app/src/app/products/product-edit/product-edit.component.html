@@ -11,6 +11,7 @@
         placeholder="Nike"
         [ngModel]="product?.name"
         #productName
+        required
       />
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
@@ -22,6 +23,7 @@
         rows="5"
         placeholder="Basketball shoe for everyone."
         [ngModel]="product?.description"
+        required
       ></textarea>
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
@@ -35,7 +37,7 @@
         #imageUrl
       />
     </mat-form-field>
-    <div>
+    <div *ngIf="product?.imageUrl || imageUrl.value">
       <img [src]="imageUrl.value" alt="productName.value" />
     </div>
     <mat-form-field class="full-width" appearance="outline">
@@ -48,7 +50,22 @@
         [ngModel]="product?.price"
       />
     </mat-form-field>
-    <button color="accent" mat-raised-button>SAVE</button>
-    <button color="accent" class="ms-2" mat-raised-button>CANCEL</button>
+    <button
+      [disabled]="!f.valid"
+      color="accent"
+      mat-raised-button
+      type="submit"
+    >
+      SAVE
+    </button>
+    <button
+      color="accent"
+      class="ms-2"
+      mat-raised-button
+      type="button"
+      (click)="onCancel()"
+    >
+      CANCEL
+    </button>
   </form>
 </div>

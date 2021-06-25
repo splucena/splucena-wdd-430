@@ -55,5 +55,11 @@ export class ProductEditComponent implements OnInit {
     } else {
       this.productService.addProduct(product);
     }
+
+    this.onCancel();
+  }
+
+  onCancel() {
+    this.router.navigate(['/products']);
   }
 }
