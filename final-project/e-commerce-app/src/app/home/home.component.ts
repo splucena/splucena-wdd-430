@@ -32,8 +32,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.searchTerm = value;
   }
 
-  addToCart() {
-    this.cartService.addToCart();
+  addToCart(name: string, price: number) {
+    this.cartService.addToCart(name, price);
   }
 
   ngOnDestroy() {

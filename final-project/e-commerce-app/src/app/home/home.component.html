@@ -46,7 +46,13 @@
           </p>
         </mat-card-content>
         <mat-card-actions>
-          <button type="button" (click)="addToCart()" class="full-width" color="accent" mat-raised-button>
+          <button
+            type="button"
+            (click)="addToCart(product.name, product.price)"
+            class="full-width"
+            color="accent"
+            mat-raised-button
+          >
             ADD TO CART
           </button>
         </mat-card-actions>

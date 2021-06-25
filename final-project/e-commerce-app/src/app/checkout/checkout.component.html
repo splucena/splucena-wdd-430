@@ -36,12 +36,16 @@
       </div>
     </form>
   </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Complete Checkout</ng-template>
+  <mat-step label="Complete Checkout">
     <p>You are almost there.</p>
     <div>
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-raised-button color="primary" matStepperNext (click)="completeCheckout()">
+      <button
+        mat-raised-button
+        color="primary"
+        matStepperNext
+        (click)="completeCheckout()"
+      >
         Complete Checkout
       </button>
     </div>

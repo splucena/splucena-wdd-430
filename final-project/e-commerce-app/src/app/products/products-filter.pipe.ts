@@ -13,11 +13,7 @@ export class ProductsFilterPipe implements PipeTransform {
           .toLocaleLowerCase()
           .includes(searchTerm.toLocaleLowerCase())
       );
-
-      console.log(filteredProducts, searchTerm);
     }
-
-    console.log(filteredProducts);
 
     if (filteredProducts.length < 1) {
       return products;

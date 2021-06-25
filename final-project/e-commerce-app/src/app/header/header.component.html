@@ -53,11 +53,10 @@
                         rounded-pill
                         bg-danger
                       "
-                      *ngIf="counter !== 0; else emtpy"
+                      *ngIf="counter !== 0"
                     >
                       {{ counter || "0" }}+
                     </span>
-                    <ng-template #empty></ng-template>
                   </button>
                 </li>
                 <li class="nav-item">

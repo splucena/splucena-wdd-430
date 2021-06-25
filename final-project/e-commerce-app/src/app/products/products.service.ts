@@ -39,7 +39,6 @@ export class ProductsService {
   getProduct(id: string) {
     for (let p of this.products) {
       if (p.id === id) {
-        //console.log(p);
         return p;
       }
     }
@@ -51,8 +50,6 @@ export class ProductsService {
     if (!product) {
       return;
     }
-
-    console.log(product);
 
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     this.http
