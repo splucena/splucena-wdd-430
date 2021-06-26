@@ -21,7 +21,7 @@
           <td>{{ c.productName }}</td>
           <!-- <td class="text-center">{{ c.quantity }}</td> -->
           <td>
-            <mat-form-field class="full-width" appearance="outline">
+            <mat-form-field appearance="outline">
               <mat-label>Quantity</mat-label>
               <input
                 type="number"
@@ -31,6 +31,8 @@
                 [ngModel]="c?.quantity"
                 #quantity
                 required
+                min="0"
+                max="100"
                 (change)="quantityChanged(c.productName, quantity.value)"
               />
             </mat-form-field>
@@ -55,23 +57,27 @@
             ${{ quantity.value * price.value | number: "1.2-2" }}
           </td>
         </tr>
-        <tr>
+        <tr class="text-light bg-dark">
           <td></td>
           <td></td>
           <td></td>
           <td>Total</td>
           <td class="text-end">${{ total | number: "1.2-2" }}</td>
         </tr>
+        <tr>
+          <td colspan="5" class="border-0">
+            <button
+              mat-raised-button
+              color="primary"
+              appearnce="fill"
+              class="pull-right"
+              (click)="checkout()"
+            >
+              Proceed to Checout
+            </button>
+          </td>
+        </tr>
       </tbody>
     </table>
-    <button
-      mat-raised-button
-      color="primary"
-      appearnce="fill"
-      class="pull-right mb-2"
-      (click)="checkout()"
-    >
-      Proceed to Checout
-    </button>
   </div>
 </div>
