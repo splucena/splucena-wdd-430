@@ -38,7 +38,11 @@
       />
     </mat-form-field>
     <div *ngIf="product?.imageUrl || imageUrl.value">
-      <img [src]="imageUrl.value" alt="productName.value" />
+      <img
+        [src]="imageUrl.value"
+        style="max-width: 200; max-height: 200px"
+        alt="productName.value"
+      />
     </div>
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Category</mat-label>
