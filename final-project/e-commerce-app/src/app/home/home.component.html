@@ -37,7 +37,7 @@
           mat-card-image
           [src]="product?.imageUrl || defaultImage"
           alt="{{ product.name }}"
-          style="min-height: 200px; max-height: 200px"
+          style="min-height: 200px; max-height: 200px; max-width: 200px"
         />
         <mat-card-content>
           <h3>${{ product?.price.$numberDecimal || product?.price }}</h3>

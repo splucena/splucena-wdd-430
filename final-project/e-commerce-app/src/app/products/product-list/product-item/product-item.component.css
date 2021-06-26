@@ -19,3 +19,9 @@
 .half-width {
   width: 47%;
 }
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
