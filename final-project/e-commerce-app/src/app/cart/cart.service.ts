@@ -55,6 +55,14 @@ export class CartService {
     this.cartCounterChange.next(this.counter);
   }
 
+  updateCartQuantity(name: string, quantity: number) {
+    // Check if product is already in the cart
+    let checkCart = this.getInCart(name);
+    checkCart.quantity = quantity;
+
+    this.cartContentChange.next([...this.cart]);
+  }
+
   clearCart() {
     this.counter = 0;
     this.cartCounterChange.next(this.counter);

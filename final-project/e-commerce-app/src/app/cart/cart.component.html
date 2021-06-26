@@ -19,19 +19,59 @@
         <tr *ngFor="let c of cart; let i = index">
           <td>{{ i + 1 }}</td>
           <td>{{ c.productName }}</td>
-          <td class="text-center">{{ c.quantity }}</td>
-          <td class="text-end">${{ c.price }}</td>
-          <td class="text-end">${{ c.quantity * c.price }}</td>
+          <!-- <td class="text-center">{{ c.quantity }}</td> -->
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Quantity</mat-label>
+              <input
+                type="number"
+                name="quantity"
+                matInput
+                placeholder="0"
+                [ngModel]="c?.quantity"
+                #quantity
+                required
+                (change)="quantityChanged(c.productName, quantity.value)"
+              />
+            </mat-form-field>
+          </td>
+          <!-- <td class="text-end" #price>${{ c.price }}</td> -->
+          <td>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Price</mat-label>
+              <input
+                type="number"
+                name="price"
+                matInput
+                placeholder="100.00"
+                [ngModel]="c?.price"
+                #price
+                required
+                readonly
+              />
+            </mat-form-field>
+          </td>
+          <td class="text-end">
+            ${{ quantity.value * price.value | number: "1.2-2" }}
+          </td>
         </tr>
         <tr>
           <td></td>
           <td></td>
           <td></td>
           <td>Total</td>
-          <td class="text-end">${{ total | number: '1.2-2' }}</td>
+          <td class="text-end">${{ total | number: "1.2-2" }}</td>
         </tr>
       </tbody>
     </table>
-    <button mat-raised-button color="primary" appearnce="fill" class="pull-right mb-2" (click)="checkout()">Proceed to Checout</button>
+    <button
+      mat-raised-button
+      color="primary"
+      appearnce="fill"
+      class="pull-right mb-2"
+      (click)="checkout()"
+    >
+      Proceed to Checout
+    </button>
   </div>
 </div>

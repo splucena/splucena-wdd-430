@@ -20,6 +20,10 @@ export class CartComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.updateCartTotal();
+  }
+
+  updateCartTotal() {
     this.cart = this.cartService.getCartContent();
     let subtotal = 0.0;
     let tempTotal = 0.0;
@@ -34,6 +38,11 @@ export class CartComponent implements OnInit, OnDestroy {
         this.cart = cart;
       }
     );
+  }
+
+  quantityChanged(name: string, quantity: number) {
+    this.cartService.updateCartQuantity(name, quantity);
+    this.updateCartTotal();
   }
 
   checkout() {
