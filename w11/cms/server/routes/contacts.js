@@ -1,8 +1,6 @@
 var express = require("express");
 const sequenceGenerator = require("./sequenceGenerator");
 const Contact = require("../models/contacts");
-const { group } = require("console");
-const { userInfo } = require("os");
 var router = express.Router();
 
 // Fetch contacts from database
@@ -26,50 +24,91 @@ router.get("/", (req, res, next) => {
 
 // Create contact
 router.post("/", (req, res, next) => {
-  const maxContactId = sequenceGenerator.nextId("contacts");
+  function saveContact(contacts) {
+    const maxContactId = sequenceGenerator.nextId("contacts");
+    let contact = new Contact({
+      id: maxContactId,
+      name: req.body.name,
+      email: req.body.email,
+      phone: req.body.phone,
+      imageUrl: req.body.imageUrl,
+      group: contacts,
+    });
 
-  let getGroups = async () => {
-    let groups = [];
+    contact
+      .save()
+      .then((createdContact) => {
+        res.status(201).json({
+          message: "Contact added successfully.",
+          contact: createdContact,
+          id: createdContact.id,
+        });
+      })
+      .catch((error) => {
+        res.status(500).json({
+          message: "An error occurred.",
+          error: error,
+        });
+      });
+  }
+
+  async function getContactsRef(callback) {
+    let result = [];
+
     for (let g of req.body.group) {
       let contactGroup = await Contact.findOne({ id: g.id });
-      groups.push(contactGroup._id);
+      result.push(contactGroup._id);
     }
-    return groups;
-  };
 
-  getGroups()
-    .then((result) => {
-      let contact = new Contact({
-        id: maxContactId,
-        name: req.body.name,
-        email: req.body.email,
-        phone: req.body.phone,
-        imageUrl: req.body.imageUrl,
-        group: result,
-      });
+    callback(result);
+  }
 
-      contact
-        .save()
-        .then((createdContact) => {
-          res.status(201).json({
-            message: "contact added successfully",
-            contact: createdContact,
-            id: createdContact.id,
-          });
-        })
-        .catch((err) => {
-          res.status(500).json({
-            message: "An error occurred.",
-            error: err,
-          });
-        });
-    })
-    .catch((err) => {
-      res.status(500).json({
-        message: "An error occurred.",
-        error: err,
-      });
-    });
+  getContactsRef(saveContact);
+
+  // const maxContactId = sequenceGenerator.nextId("contacts");
+
+  // let getGroups = async () => {
+  //   let groups = [];
+  //   for (let g of req.body.group) {
+  //     let contactGroup = await Contact.findOne({ id: g.id });
+  //     groups.push(contactGroup._id);
+  //   }
+  //   return groups;
+  // };
+
+  // getGroups()
+  //   .then((result) => {
+  //     let contact = new Contact({
+  //       id: maxContactId,
+  //       name: req.body.name,
+  //       email: req.body.email,
+  //       phone: req.body.phone,
+  //       imageUrl: req.body.imageUrl,
+  //       group: result,
+  //     });
+
+  //     contact
+  //       .save()
+  //       .then((createdContact) => {
+  //         res.status(201).json({
+  //           message: "contact added successfully",
+  //           contact: createdContact,
+  //           id: createdContact.id,
+  //         });
+  //       })
+  //       .catch((err) => {
+  //         res.status(500).json({
+  //           message: "An error occurred.",
+  //           error: err,
+  //         });
+  //       });
+  //   })
+  //   .catch((err) => {
+  //     res.status(500).json({
+  //       message: "An error occurred.",
+  //       error: err,
+  //     });
+  //   });
 });
 
 router.put("/:id", (req, res, next) => {
