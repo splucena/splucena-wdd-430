@@ -40,6 +40,12 @@ export class CartComponent implements OnInit, OnDestroy {
     );
   }
 
+  removeToCart(productName: string) {
+    this.cartService.deleteItem(productName);
+
+    this.updateCartTotal();
+  }
+
   quantityChanged(name: string, quantity: number) {
     this.cartService.updateCartQuantity(name, quantity);
     this.updateCartTotal();

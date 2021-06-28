@@ -13,6 +13,7 @@
           <th>Quantity</th>
           <th>Price</th>
           <th>Subtotal</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -56,8 +57,20 @@
           <td class="text-end">
             ${{ quantity.value * price.value | number: "1.2-2" }}
           </td>
+          <td>
+            <button
+              mat-raised-button
+              color="accent"
+              appearance="fill"
+              class="pull-right"
+              (click)="removeToCart(c.productName)"
+            >
+              Remove
+            </button>
+          </td>
         </tr>
         <tr class="text-light bg-dark">
+          <td></td>
           <td></td>
           <td></td>
           <td></td>
@@ -65,7 +78,7 @@
           <td class="text-end">${{ total | number: "1.2-2" }}</td>
         </tr>
         <tr>
-          <td colspan="5" class="border-0">
+          <td colspan="6" class="border-0">
             <button
               mat-raised-button
               color="primary"
