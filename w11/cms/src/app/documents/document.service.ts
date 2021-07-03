@@ -6,6 +6,11 @@ import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
 
 import { map } from 'rxjs/operators';
 
+interface Response {
+  message: string;
+  documents: Document[];
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -23,9 +28,7 @@ export class DocumentService {
 
   getDocuments(): any {
     this.http
-      .get<{ message: string; documents: any }>(
-        'http://localhost:3000/documents'
-      )
+      .get<Response>('http://localhost:3000/documents')
       .pipe(
         map((documentData) => {
           return documentData.documents.map((document) => {
